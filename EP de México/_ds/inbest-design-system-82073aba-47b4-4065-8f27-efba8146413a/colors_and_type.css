@@ -1,0 +1,198 @@
+/* ============================================================
+   iNBest Design System — Foundations
+   Colors + Typography tokens, extracted from the production
+   "V2" brand (client/src/styles/v2.css @ www.inbest.cloud).
+
+   Load order:
+     1. This file (self-hosts Geist below; @import the rest)
+     2. Google Fonts for Geist Mono + Instrument Serif:
+   https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap
+   ============================================================ */
+
+/* Geist (sans) is self-hosted from the uploaded variable font.
+   Geist Mono + Instrument Serif still load from Google Fonts CDN. */
+@font-face {
+  font-family: "Geist";
+  src: url("fonts/Geist-VariableFont_wght.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* ---- Surfaces (light, the default brand mode) ---- */
+  --bg:        #f3f6fa;   /* page background — cool near-white */
+  --bg-2:      #e7ecf3;   /* raised surface / card hover / inset code */
+
+  /* ---- Ink (text + dark surfaces) ---- */
+  --ink:       #0a1729;   /* primary text AND dark-section background */
+  --ink-2:     #1c2638;   /* secondary text, body copy on light */
+  --muted:     #5b6576;   /* tertiary text, captions, card body */
+  --muted-2:   #8b95a6;   /* faintest text, disabled */
+
+  /* ---- Accent (the iNBest cyan-blue) ---- */
+  --accent:        #1ea7e8;   /* bright cyan — dots, pins, hover, logo mark */
+  --accent-deep:   #075e99;   /* deep blue — mono marks, serif <em>, accent btn */
+  --accent-on-dark:#64c7f5;   /* lifted cyan for serif <em> / marks on ink bg */
+
+  /* ---- Lines (the system is built on hairline rules) ---- */
+  --line:        rgba(10, 23, 41, 0.12);  /* default hairline grid line */
+  --line-strong: rgba(10, 23, 41, 0.28);  /* section / table outer rule */
+  --line-on-dark: rgba(234, 241, 250, 0.16); /* hairlines on ink bg */
+
+  /* ---- Text colors when on the dark (ink) surface ---- */
+  --on-ink:        #eaf1fa;            /* near-white body on ink */
+  --on-ink-soft:   rgba(234,241,250,0.72);
+  --on-ink-faint:  rgba(234,241,250,0.56);
+
+  /* ---- Status (from tailwind config) ---- */
+  --status-online:  rgb(34 197 94);
+  --status-away:    rgb(245 158 11);
+  --status-busy:    rgb(239 68 68);
+  --status-offline: rgb(156 163 175);
+
+  /* ============================================================
+     TYPE FAMILIES
+     ------------------------------------------------------------
+     sans   — Geist            : UI, headlines, body
+     mono   — Geist Mono       : eyebrows, marks [ 001 ], labels, code
+     serif  — Instrument Serif : italic emphasis only (the <em> word)
+     ============================================================ */
+  --font-sans:  "Geist", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-mono:  "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-serif: "Instrument Serif", "Times New Roman", serif;
+
+  /* ---- Type scale (fluid clamps mirror production) ---- */
+  --fs-hero:    clamp(58px, 8.5vw, 130px);  /* home h1 */
+  --fs-display: clamp(48px, 6.4vw, 94px);   /* page hero / final h1,h2 */
+  --fs-h2:      clamp(34px, 4vw, 56px);     /* section headline */
+  --fs-stage:   clamp(28px, 3vw, 44px);     /* process stage title */
+  --fs-h3:      25px;                        /* card title */
+  --fs-lede:    19px;                        /* hero sub */
+  --fs-lede-sm: 17px;                        /* section lede */
+  --fs-body:    16px;                        /* base */
+  --fs-sm:      14px;                        /* nav, button, footer links */
+  --fs-mono:    11px;                        /* eyebrows, marks, labels */
+
+  /* ---- Weights ---- */
+  --fw-regular: 400;
+  --fw-medium:  500;   /* default for headlines — never bold/heavy */
+  --fw-semi:    600;
+
+  /* ---- Tracking (letter-spacing) ---- */
+  --track-mono:    0.12em;  /* marks, labels */
+  --track-eyebrow: 0.14em;  /* eyebrows */
+  --track-head:    0em;     /* headlines sit at 0, never tightened far */
+
+  /* ---- Line heights ---- */
+  --lh-hero: 0.92;
+  --lh-head: 1.02;
+  --lh-body: 1.55;
+
+  /* ============================================================
+     SPACING / SHAPE / MOTION
+     ============================================================ */
+  --container: 1320px;
+  --gutter: 28px;
+  --section-y: 112px;
+
+  /* Radii — the brand is DELIBERATELY square. Only pills + the
+     dark form panel are rounded. Cards / grids have NO radius. */
+  --radius-none: 0px;       /* cards, grids, media — sharp */
+  --radius-sm: 4px;         /* inputs */
+  --radius-md: 8px;         /* dark form panel, map insets */
+  --radius-pill: 999px;     /* buttons, tags, locale switch */
+
+  /* Elevation — shadows are nearly absent; depth comes from lines.
+     The one real shadow is under the dark form panel / flight card. */
+  --shadow-panel: 0 20px 50px rgba(10, 23, 41, 0.12);
+  --shadow-float: 0 22px 70px rgba(0, 0, 0, 0.28);
+  --shadow-btn-hover: 0 4px 12px rgba(7, 124, 171, 0.25);
+
+  /* Motion — quick, linear-ish, no bounce. */
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-fast: 160ms;
+  --dur: 180ms;
+  --dur-slow: 300ms;
+}
+
+/* ============================================================
+   SEMANTIC TYPE PRIMITIVES
+   Drop-in classes that encode the brand's type decisions.
+   ============================================================ */
+
+.t-hero {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-medium);
+  font-size: var(--fs-hero);
+  line-height: var(--lh-hero);
+  letter-spacing: var(--track-head);
+}
+
+.t-display {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-medium);
+  font-size: var(--fs-display);
+  line-height: 0.98;
+}
+
+.t-h2 {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-medium);
+  font-size: var(--fs-h2);
+  line-height: var(--lh-head);
+}
+
+.t-h3 {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-medium);
+  font-size: var(--fs-h3);
+  line-height: 1.08;
+}
+
+/* The signature move: italic serif word inside a sans headline. */
+.t-em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: var(--fw-regular);
+  color: var(--accent-deep);
+}
+.on-ink .t-em { color: var(--accent-on-dark); }
+
+.t-lede {
+  font-family: var(--font-sans);
+  font-size: var(--fs-lede);
+  line-height: var(--lh-body);
+  color: var(--ink-2);
+}
+
+.t-body {
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--ink-2);
+}
+
+/* Eyebrow: mono, uppercase, tracked, often prefixed with a dot. */
+.t-eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--fs-mono);
+  letter-spacing: var(--track-eyebrow);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Mark: mono, uppercase, accent-deep — the [ 001 ] / FD/01 tags. */
+.t-mark {
+  font-family: var(--font-mono);
+  font-size: var(--fs-mono);
+  letter-spacing: var(--track-mono);
+  text-transform: uppercase;
+  color: var(--accent-deep);
+}
+.on-ink .t-mark { color: var(--accent-on-dark); }
+
+.t-mono {
+  font-family: var(--font-mono);
+  letter-spacing: 0.04em;
+}

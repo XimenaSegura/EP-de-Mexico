@@ -1,0 +1,174 @@
+/* ============================================================
+   iNBest Design System — Component Layer (brand.css)
+   Faithful adaptation of production styles from
+   client/src/styles/v2.css @ iNBest-cloud/www.inbest.cloud.
+
+   Requires colors_and_type.css + Google Fonts loaded first.
+   Use the `inbest` class on a root wrapper.
+   ============================================================ */
+
+.inbest {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+.inbest *, .inbest *::before, .inbest *::after { box-sizing: border-box; }
+.inbest a { color: inherit; text-decoration: none; }
+
+.ib-wrap { max-width: var(--container); margin: 0 auto; padding: 0 var(--gutter); }
+
+/* ---- Eyebrow / dot / tag --------------------------------- */
+.ib-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-mono); font-size: 11px;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);
+}
+.ib-dot { width: 7px; height: 7px; border-radius: 999px; background: var(--accent); flex: 0 0 auto; }
+.ib-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-mono); font-size: 11px;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-2);
+  border: 1px solid var(--line-strong); padding: 6px 10px;
+  border-radius: 999px; background: transparent;
+}
+.ib-mark {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--accent-deep);
+}
+
+/* ---- Headlines + serif emphasis -------------------------- */
+.ib-h2 { margin: 0; font-weight: 500; letter-spacing: 0; font-size: clamp(34px, 4vw, 56px); line-height: 1.02; }
+.ib-em { font-family: var(--font-serif); font-style: italic; color: var(--accent-deep); font-weight: 400; }
+.ib-lede { font-size: 17px; line-height: 1.55; color: var(--ink-2); }
+
+/* ---- Buttons --------------------------------------------- */
+.ib-button {
+  display: inline-flex; align-items: center; justify-content: space-between; gap: 12px;
+  min-height: 42px; padding: 11px 18px;
+  border: 1px solid var(--ink); border-radius: 999px;
+  background: var(--ink); color: var(--bg);
+  font-family: var(--font-sans); font-size: 14px; font-weight: 500; cursor: pointer;
+  transition: color 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+.ib-button:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+.ib-button--ghost { background: transparent; border-color: var(--line-strong); color: var(--ink); }
+.ib-button--ghost:hover { background: transparent; border-color: var(--accent); color: var(--accent); }
+.ib-button--accent { background: var(--accent-deep); border-color: var(--accent-deep); color: #fff; }
+.ib-button--accent:hover { background: var(--accent); border-color: var(--accent); }
+.ib-arrow { font-family: var(--font-mono); }
+
+/* ---- Pills ----------------------------------------------- */
+.ib-pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  border: 1px solid var(--line); border-radius: 999px; padding: 7px 11px;
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--muted);
+}
+
+/* ---- Card + grid (the hairline-rule system) -------------- */
+.ib-grid-2, .ib-grid-3, .ib-grid-4, .ib-grid-6 {
+  display: grid; gap: 0;
+  border-top: 1px solid var(--line-strong);
+  border-bottom: 1px solid var(--line-strong);
+}
+.ib-grid-2 { grid-template-columns: repeat(2, 1fr); }
+.ib-grid-3 { grid-template-columns: repeat(3, 1fr); }
+.ib-grid-4 { grid-template-columns: repeat(4, 1fr); }
+.ib-grid-6 { grid-template-columns: repeat(6, 1fr); }
+
+.ib-card {
+  display: block; width: 100%; height: 100%;
+  padding: 32px 28px; border-right: 1px solid var(--line);
+  min-height: 220px; transition: background 180ms ease; overflow-wrap: anywhere;
+}
+.ib-card:hover { background: var(--bg-2); }
+.ib-card__mark {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em;
+  color: var(--accent-deep); margin-bottom: 28px; text-transform: uppercase;
+}
+.ib-card h3 { margin: 0 0 12px; font-size: 25px; line-height: 1.08; font-weight: 500; }
+.ib-card p { margin: 0; color: var(--muted); line-height: 1.55; }
+.ib-list {
+  margin: 24px 0 0; padding: 0; list-style: none;
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase;
+}
+.ib-list li { padding: 8px 0; border-top: 1px solid var(--line); color: var(--ink-2); }
+
+/* ---- Dark section variant -------------------------------- */
+.ib-dark { background: var(--ink); color: var(--bg); }
+.ib-dark .ib-eyebrow { color: rgba(234,241,250,0.58); }
+.ib-dark .ib-em, .ib-dark .ib-card__mark { color: var(--accent-on-dark); }
+.ib-dark .ib-card p { color: rgba(234,241,250,0.68); }
+
+/* ---- Proof stat cells ------------------------------------ */
+.ib-proof__row {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+}
+.ib-proof__cell { padding: 26px 28px; border-right: 1px solid var(--line); }
+.ib-proof__cell:last-child { border-right: 0; }
+.ib-proof__num { font-size: 44px; font-weight: 500; line-height: 1; }
+.ib-proof__num sup { font-size: 16px; color: var(--accent-deep); margin-left: 4px; }
+.ib-proof__label {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--muted); margin-top: 10px;
+}
+
+/* ---- Ticker ---------------------------------------------- */
+.ib-ticker {
+  border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  background: var(--bg-2); font-family: var(--font-mono); font-size: 11px;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+}
+.ib-ticker__inner { display: flex; gap: 28px; align-items: center; padding: 8px var(--gutter); }
+.ib-ticker__live { color: var(--accent-deep); display: inline-flex; align-items: center; gap: 6px; }
+.ib-ticker__live::before {
+  content: ""; width: 6px; height: 6px; background: var(--accent);
+  border-radius: 50%; animation: ibPulse 1.6s infinite;
+}
+@keyframes ibPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
+
+/* ---- Locale switch --------------------------------------- */
+.ib-locale {
+  border: 1px solid var(--line); border-radius: 999px;
+  background: rgba(255,255,255,0.34); display: inline-flex; align-items: center; gap: 2px; padding: 2px;
+}
+.ib-locale__opt {
+  border: 0; border-radius: 999px; background: transparent; color: var(--muted); cursor: pointer;
+  display: inline-flex; align-items: center; gap: 5px; min-height: 32px; padding: 4px 9px;
+  font: inherit; font-size: 12px; transition: background 160ms ease, color 160ms ease;
+}
+.ib-locale__opt.is-active { background: var(--ink); color: var(--bg); }
+.ib-locale__flag { width: 18px; height: 12px; flex: 0 0 auto; overflow: hidden;
+  border: 1px solid rgba(10,23,41,0.18); border-radius: 2px; position: relative; }
+.ib-locale__flag--us { background: repeating-linear-gradient(to bottom,#b22234 0,#b22234 1.2px,#fff 1.2px,#fff 2.4px); }
+.ib-locale__flag--us::before { content:""; position:absolute; top:0; left:0; width:44%; height:54%; background:#3c3b6e; }
+.ib-locale__flag--mx { background: linear-gradient(90deg,#006847 0,#006847 33.333%,#fff 33.333%,#fff 66.666%,#ce1126 66.666%,#ce1126 100%); }
+.ib-locale__label { font-family: var(--font-mono); font-size: 11px; }
+
+/* ---- Inputs (dark form panel) ---------------------------- */
+.ib-form {
+  padding: 24px; border: 1px solid rgba(234,241,250,0.16); border-radius: 8px;
+  background: linear-gradient(145deg, rgba(30,167,232,0.13), rgba(10,23,41,0) 42%), var(--ink);
+  color: var(--bg); box-shadow: 0 20px 50px rgba(10,23,41,0.12);
+}
+.ib-field { margin-bottom: 12px; }
+.ib-label {
+  display: block; margin: 0 0 6px; color: rgba(234,241,250,0.78);
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+}
+.ib-input {
+  width: 100%; min-height: 42px; border: 1px solid rgba(234,241,250,0.2); border-radius: 4px;
+  background: rgba(234,241,250,0.08); color: var(--bg);
+  font-family: var(--font-sans); font-size: 14px; padding: 10px 12px; outline: none;
+  transition: border-color 160ms ease, background 160ms ease;
+}
+.ib-input::placeholder { color: rgba(234,241,250,0.4); }
+.ib-input:focus { border-color: rgba(100,199,245,0.88); background: rgba(234,241,250,0.12); }
+
+/* ---- Brand mark ------------------------------------------ */
+.ib-logo { display: block; width: 120px; height: auto; }
+.ib-logo--invert { filter: brightness(0) invert(1); }
